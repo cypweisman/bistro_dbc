@@ -1,0 +1,1 @@
+registering_feature_spec.rb
