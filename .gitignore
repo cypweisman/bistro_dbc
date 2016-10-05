@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+/locales/secrets.yml
+/locales/database.yml
