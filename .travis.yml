@@ -1,4 +1,6 @@
 language: ruby
 before_install:
 - rvm install 2.0
+script:
+- bundle exec rake db:create
 
