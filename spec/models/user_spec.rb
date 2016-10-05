@@ -1,7 +1,15 @@
 require "rails_helper"
 
-describe "Travis basic test"  do
-  it 'expects one to equal one' do
-    expect(1).to eq 1
+describe User  do
+  let(:user) { User.create!(username: "jack_noble", email: "jack@yahoo.com", password: "password", is_admin: false) }
+
+  describe "attributes" do
+    it "has a username" do
+      expect(user.username).to eq("jack_noble")
+    end
+
+    it "has an email" do
+      expect(user.email).to eq("jack@yahoo.com")
+    end
   end
 end
