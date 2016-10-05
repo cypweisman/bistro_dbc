@@ -1,1 +1,9 @@
-
+<%= form_for @user, {action: "create"} do |f| %>
+<fieldset>
+  <legend>Register</legend>
+  <%= f.text_field :username, placeholder: "username" %>
+  <%= f.email_field :email, placeholder: "email" %>
+  <%= f.password_field :password, placeholder: "password" %>
+  <%= f.submit "Create" %>
+</fieldset>
+<% end %>
