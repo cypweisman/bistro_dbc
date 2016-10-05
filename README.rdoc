@@ -5,7 +5,7 @@ application up and running.
 
 #NAME Bernie's Bistro
 #Collaborators:
-cypweisman:
+cypweisman: Cy Weisman
 winged115: Jack Noble
 dnestoff: David Nestoff
 lucasewright: Lucas Wright
