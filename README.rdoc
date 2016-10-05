@@ -3,6 +3,13 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+#NAME Bernie's Bistro
+#Collaborators:
+cypweisman: Cy Weisman
+winged115: Jack Noble
+dnestoff: David Nestoff
+lucasewright: Lucas Wright
+
 Things you may want to cover:
 
 * Ruby version
