@@ -1,1 +1,1 @@
-registering_feature_spec.rb
+require "rails_helper"
