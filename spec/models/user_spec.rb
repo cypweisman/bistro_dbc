@@ -19,5 +19,10 @@ describe User  do
     it "has an admin status of false upon creation" do
       expect(user.is_admin).to eq false
     end
+
+    it "is an admin if is_admin is true" do
+      user.is_admin = true
+      expect(user.is_admin).to eq true
+    end
   end
 end
