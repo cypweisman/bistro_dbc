@@ -14,7 +14,7 @@
   <% else %>
     <h2>Your Menus</h2>
     <% current_user.menus.each do |menu| %>
-      <div class="chef-menus">
+      <div class="chef-menus-list">
         <ul>
           <li><%= link_to "#{menu.title}", menu_path(menu), :method => :get %>
         </ul>
