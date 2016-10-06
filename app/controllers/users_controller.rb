@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :is_admin?, only: [:show]
+
   def new
     @user = User.new
     render :new
@@ -16,13 +18,21 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find(params[:id])
   end
 
   private
 
   def user_params
     params.require(:user).permit(:password, :username, :email)
+  end
+
+  def is_admin?
+    if current_user
+      if current_user.is_admin
+        return true
+      end
+    end
   end
 
 end

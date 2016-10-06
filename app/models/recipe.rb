@@ -5,7 +5,6 @@ class Recipe < ActiveRecord::Base
 
   validates :name, :description, :prep_time, :directions, :user_id, presence: true
 
-  validates :prep_time, numericality: {greater_than: 0}
-
+  validates :prep_time, numericality: { greater_than: 0 }
 
 end

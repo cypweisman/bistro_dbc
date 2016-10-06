@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :recipes
+  has_many :menus
+
 
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true
