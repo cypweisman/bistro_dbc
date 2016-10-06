@@ -17,9 +17,9 @@ class RecipesController < ApplicationController
     @user = User.find(params[:user_id])
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      redirect_to recipe_path(@recipe)
+      redirect_to user_path(@user)
     else
-      @error = @recipe.errors.full_messages
+      @errors = @recipe.errors.full_messages
       render :new
     end
   end
@@ -28,6 +28,10 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :description, :user_id, :directions, :prep_time, :category_id)
+  end
+
+  def ingredients_params
+    params.require(:ingredients).permit(:name, :amount, :measurement)
   end
 
 end
