@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe UsersController do
-  let!(:contributer) { User.create!(username: "jack_r", email: "test@yahoo.com", password: "password")}
+  let!(:user) { User.create!(username: "jack_r", email: "test@yahoo.com", password: "password")}
 
   describe "GET #new" do
     it "renders the :new template" do
@@ -32,8 +32,13 @@ describe UsersController do
   describe "GET #show" do
     context "when a contributor" do
 
+      xit "assigns the correct user as @user" do
+        get :show, { id: user.id }
+        expect(assigns(user)).to eq(user)
+      end
+
       it "renders the :show template" do
-        get :show, { id: contributer.id}
+        get :show, { id: user.id}
         expect(response).to render_template(:show)
       end
 
