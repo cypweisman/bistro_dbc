@@ -35,3 +35,4 @@ describe Ingredient do
     end
   end
 end
+
