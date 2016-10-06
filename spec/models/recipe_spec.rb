@@ -26,7 +26,7 @@ describe Recipe do
 
   describe "validations" do
     it "is invalid without a name" do
-      Recipe.create(description: "Mom's homemade brownies with nice nuts in them", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: User.first, category_id: 1)
+      Recipe.create(description: "Mom's homemade brownies with nice nuts in them", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: 1, category_id: 1)
       expect(Recipe.count).to eq(0)
     end
 
