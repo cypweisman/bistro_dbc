@@ -4,6 +4,7 @@ describe User  do
 
   describe "attributes" do
   let(:user) { User.create!(username: "jack_noble", email: "jack@yahoo.com", password: "password") }
+
     it "has a username" do
       expect(user.username).to eq("jack_noble")
     end
@@ -43,4 +44,13 @@ describe User  do
       expect(User.count).to eq(1)
     end
   end
+
+  # describe "associations" do
+  #   it "has a collection of recipes" do
+  #     user = User.create!(username: "jack_noble", email: "jack@yahoo.com", password: "password")
+  #     Category.create!(title: "dessert")
+  #     Recipe.create!(name: "Creme Brule", description: "A fine velvety dessert cake", prep_time: 30, directions: "1. prepare, 2. cook", user_id: user.id, category_id: 1)
+  #     expect(user.recipes.length).to eq(1)
+  #   end
+  # end
 end
