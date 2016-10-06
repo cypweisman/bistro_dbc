@@ -38,7 +38,7 @@ describe UsersController do
       end
 
       it "renders the :show template" do
-        get :show, { id: user.id}
+        get :show, { id: user.id }
         expect(response).to render_template(:show)
       end
 
