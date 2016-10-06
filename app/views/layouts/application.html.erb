@@ -9,7 +9,7 @@
 <body>
   <nav>
     <% if session[:user_id] != nil %>
-      <%= link_to "#{@user.username}", user_path(@user), :method => :get %>
+      <%= link_to current_user.username, user_path(current_user), :method => :get %>
       <%= link_to "logout", session_path(session[:user_id]), :method => :delete %>
     <% else %>
       <%= link_to "register", new_user_path, :method => :get %>
