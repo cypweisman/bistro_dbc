@@ -32,9 +32,9 @@ describe UsersController do
   describe "GET #show" do
     context "when a contributor" do
 
-      xit "assigns the correct user as @user" do
+      it "assigns the correct user as @user" do
         get :show, { id: user.id }
-        expect(assigns(user)).to eq(user)
+        expect(assigns(:user)).to eq(user)
       end
 
       it "renders the :show template" do
