@@ -17,7 +17,8 @@ t_ingredients = ["corn," "flour", "beef", "water", "butter"]
 t_categories.each do |t_category|
   Category.create(title: t_category)
 end
-
+pete = User.create(username: "Chef Pete", email: "pete@gmail.com", password: "password")
+pete.is_admin = true
 5.times do
    User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, password: "password")
 end
