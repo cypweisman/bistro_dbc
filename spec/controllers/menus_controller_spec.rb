@@ -21,6 +21,14 @@ describe MenusController do
         new_menu = Menu.last
         expect(assigns(:menu)).to eq new_menu
       end
+
+      it "redirects to the menu show" do
+        user = User.create!(username: "Ryan", password: "12341234", email: "RyanB@ryan.com")
+        post :create, { user_id: user.id, menu: {title: "Brunch", description: "A fine fair of light early morning options", user_id: 1}}
+        new_menu = Menu.last
+
+        expect(response).to redirect_to "/menus/#{new_menu.id}"
+      end
     end
   end
 end
