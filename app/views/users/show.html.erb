@@ -12,15 +12,25 @@
       </div>
 
   <% else %>
+    <div class="chef-menus-info">
     <h2>Your Menus</h2>
     <% current_user.menus.each do |menu| %>
-      <div class="chef-menus-info">
         <ul>
-          <li><%= link_to "#{menu.title}", menu_path(menu), :method => :get %></li>
+          <li><%= link_to "#{menu.title}", menu_path(menu), :method => :get %><br><%= menu.description %></li>
         </ul>
     <% end %>
 
         <span><%= link_to "New Menu", new_user_menu_path(current_user), :method => :get %></span>
-      </div>
+    </div>
 
+    <div class="user-recipes-info">
+    <h2>Your Recipes</h2>
+    <% current_user.recipes.each do |recipe| %>
+        <ul>
+          <li><%= link_to "#{recipe.name}", recipe_path(recipe), :method => :get %></li>
+        </ul>
+    <% end %>
+
+        <span><%= link_to "Create New Recipe", new_user_recipe_path(current_user), :method => :get %></span>
+    </div>
   <% end %>
