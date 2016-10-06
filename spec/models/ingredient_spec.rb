@@ -29,10 +29,6 @@ describe Ingredient do
       expect(Ingredient.count).to eq(0)
     end
 
-    it "needs to belong to a recipe" do
-      Ingredient.create(name: "onion", amount: "1.5 cups")
-      expect(Ingredient.count).to eq (0)
-    end
   end
 end
 
