@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @recipe = Recipe.new
     @user = User.find(params[:user_id])
     render :new
   end
