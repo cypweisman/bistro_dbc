@@ -27,27 +27,27 @@ describe Recipe do
   describe "validations" do
     it "is invalid without a name" do
       Recipe.create(description: "Mom's homemade brownies with nice nuts in them", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: User.first, category_id: 1)
-      expect(User.count).to eq(0)
+      expect(Recipe.count).to eq(0)
     end
 
     it "is invalid without a description" do
-      Recipe.create(name: "Brownie Pie Cake", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: User.first, category_id: 1)
-      expect(User.count).to eq(0)
+      Recipe.create(name: "Brownie Pie Cake", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: 1, category_id: 1)
+      expect(Recipe.count).to eq(0)
     end
 
     it "is invalid without a prep time" do
-      Recipe.create(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: User.first, category_id: 1)
-      expect(User.count).to eq (0)
+      Recipe.create(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", directions: "Start by doing this \n and then do this \n and then do this\n", user_id: 1, category_id: 1)
+      expect(Recipe.count).to eq (0)
     end
 
     it "is invalid if prep time is negative" do
-      Recipe.create(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", prep_time: (-10), directions: "Start by doing this \n and then do this \n and then do this\n", user_id: User.first, category_id: 1)
-      expect(User.count).to eq (0)
+      Recipe.create(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", prep_time: (-10), directions: "Start by doing this \n and then do this \n and then do this\n", user_id: 1, category_id: 1)
+      expect(Recipe.count).to eq (0)
     end
 
     it "is invalid without directions" do
-      Recipe.create(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", prep_time: (-10),user_id: User.first, category_id: 1)
-      expect(User.count).to eq (0)
+      Recipe.create(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", prep_time: (-10),user_id: 1, category_id: 1)
+      expect(Recipe.count).to eq (0)
     end
   end
 end
