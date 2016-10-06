@@ -1,5 +1,9 @@
 <h1>All Recipes</h1>
 
+ <% flash.each do |key, value| %>
+        <div><%= value %></div>
+  <% end %>
+
 <ul id="recipe-list">
   <% @recipes.each do |recipe| %>
     <li>
