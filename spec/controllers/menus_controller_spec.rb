@@ -41,4 +41,13 @@ describe MenusController do
       end
     end
   end
+
+  describe "GET #show" do
+
+    it "renders the show template" do
+      menu = Menu.create!(title: "Lovely", description: "Lovely", user_id: 1)
+      get :show, { id: menu.id }
+      expect(response).to render_template(:show)
+    end
+  end
 end

@@ -15,6 +15,9 @@ class MenusController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def menu_params
