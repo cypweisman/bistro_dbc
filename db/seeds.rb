@@ -33,3 +33,14 @@ end
 end
 
 
+1.times do
+  Menu.create(title: "Fancy Menu", description: "test one", user_id: 1)
+end
+
+1.times do
+  Menu.create(title: "Casual Menu", description: "test two", user_id: 1)
+end
+
+1.times do
+  Menu.create(title: "Nah Menu", description: "test three", user_id: 1)
+end
