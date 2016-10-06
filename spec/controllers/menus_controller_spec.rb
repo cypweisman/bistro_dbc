@@ -30,5 +30,15 @@ describe MenusController do
         expect(response).to redirect_to "/menus/#{new_menu.id}"
       end
     end
+
+    context "when invalid params are passed" do
+
+      it "renders the new menu template" do
+        user = User.create!(username: "Ryan", password: "12341234", email: "RyanB@ryan.com")
+        post :create, { user_id: user.id, menu: {title: "Brunch", description: "A fine fair of light early morning options", user_id: nil}}
+
+        expect(response).to render_template(:new)
+      end
+    end
   end
 end
