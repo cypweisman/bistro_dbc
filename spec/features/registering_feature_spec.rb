@@ -1,23 +1,23 @@
 require "rails_helper"
 
 feature 'registering for the site' do
-  scenario "the user clicks on register and is registered" do
+  scenario "the user clicks on create and is registered" do
     visit '/users/new'
+    old_count = User.all.count
     within_fieldset("Register") do
       fill_in 'username', :with => "Jack"
     end
 
     within_fieldset("Register") do
-      fill_in 'email', :with => "jack.carmco@yahoo.com"
+      fill_in 'email', :with => "unique@example.com"
     end
 
     within_fieldset("Register") do
-      fill_in 'password', :with => "password"
+      fill_in 'password', :with => "password_plus_1"
     end
 
     click_button('Create')
 
-    visit '/'
-    expect(page).to have_content "logout"
+    expect(User.all.count).to eq(old_count + 1)
   end
 end
