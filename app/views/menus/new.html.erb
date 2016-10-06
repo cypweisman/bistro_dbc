@@ -1,0 +1,9 @@
+<%= form_for ([@user, @menu]), {action: "create"} do |f| %>
+<fieldset>
+  <legend>New Menu</legend>
+  <%= f.text_field :title, placeholder: "title" %>
+  <%= f.text_area :description, placeholder: "your description here" %>
+  <%= f.hidden_field :user_id, value: params[:user_id] %>
+  <%= f.submit "Create" %>
+</fieldset>
+<% end %>
