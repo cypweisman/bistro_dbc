@@ -3,8 +3,8 @@ require "rails_helper"
 describe Recipe do
 
   describe "attributes" do
-  let(:user) { User.create!(user: "Billiejean", email: "Billiejean@gmail.com", password: "12341234") }
-  let(:recipe) { Recipe.create!(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: User.first, category_id: 1) }
+
+  let(:recipe) { Recipe.create!(name: "Brownie Pie Cake", description: "Mom's homemade brownies with nice nuts in them", prep_time: 45, directions: "Start by doing this \n and then do this \n and then do this\n", user_id: 1, category_id: 1) }
 
     it "has a name" do
       expect(recipe.name).to eq("Brownie Pie Cake")
@@ -19,7 +19,7 @@ describe Recipe do
     end
 
     it "has directions" do
-      expect(recipe.prep_time).to eq "Start by doing this \n and then do this \n and then do this\n"
+      expect(recipe.directions).to eq "Start by doing this \n and then do this \n and then do this\n"
     end
 
   end
