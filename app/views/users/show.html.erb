@@ -8,7 +8,7 @@
         </ul>
     <% end %>
 
-        <span><%= link_to "Create New Recipe", new_user_recipe_path, :method => :get %></span>
+        <span><%= link_to "Create New Recipe", new_user_recipe_path(current_user), :method => :get %></span>
       </div>
 
   <% else %>
@@ -20,7 +20,7 @@
         </ul>
     <% end %>
 
-        <span><%= link_to "New Menu", new_user_menu_path, :method => :get %></span>
+        <span><%= link_to "New Menu", new_user_menu_path(current_user), :method => :get %></span>
       </div>
 
   <% end %>
