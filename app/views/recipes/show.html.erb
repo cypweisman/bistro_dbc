@@ -1,0 +1,16 @@
+<h1><%= @recipe.name %></h1>
+<h2>Category <%= @recipe.category.title %></h2>
+
+
+<p>Description: <%= @recipe.description %></p>
+<ul>
+  <li>Prep time: <%= @recipe.prep_time %></li>
+  <li>Directions: <%= @recipe.directions %></li>
+  <h3>Ingredients:</h3>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %> <%= ingredient.amount %></li>
+    <% end %>
+  </ul>
+
+</ul>
