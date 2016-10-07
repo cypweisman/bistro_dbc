@@ -1,10 +1,22 @@
 <h1><%= @menu.title %></h1>
 <p><%= @menu.description %></p><br>
 
-<% @menu.menu_items.each do |item| %>
-  <ul>
-    <li><%= item.recipe.name %><br><%= item.description %></li>
-  </ul>
+<div class="chef-menu-options">
+  <%= link_to "Edit Menu", edit_menu_path(@menu) %>
+  <%= link_to "Delete Menu", menu_path(@menu), :method => :delete, data: {confirm: "Are you sure you want to delete this Menu?"} %>
+</div>
+
+<% if @menu.menu_items.length > 0 %>
+  <% @menu.sorted_menu.each do |category, dishes| %>
+    <%= category.capitalize %>
+    <% dishes.each do |dish| %>
+      <ul>
+        <li><i><%= dish.recipe.name %></i> ~~~~~~~~~ <i><%= dish.price %></i><br>
+          <%= dish.description %>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
 <% end %>
 
 
