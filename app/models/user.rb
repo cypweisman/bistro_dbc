@@ -22,4 +22,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def menu_name_search(criteria)
+    menu_results = self.menus.where('title LIKE ?', "%#{criteria}%")
+  end
+
+   #@menus = @user.menus.where('title LIKE ?', "%#{params[:search]}%")
+
 end
