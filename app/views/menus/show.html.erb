@@ -4,6 +4,7 @@
 <div class="chef-menu-options">
   <%= link_to "Edit Menu", edit_menu_path(@menu) %>
   <%= link_to "Delete Menu", menu_path(@menu), :method => :delete, data: {confirm: "Are you sure you want to delete this Menu?"} %>
+  <%= link_to "Preview", print_menu_path(@menu) %>
 </div>
 
 <% if @menu.menu_items.length > 0 %>
