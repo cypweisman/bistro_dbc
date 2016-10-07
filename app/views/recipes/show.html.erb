@@ -5,7 +5,7 @@
 
 
   <%= form_for ([@menu_item]), {action: "create"} do |f| %>
-
+    <%= label_tag("Add To Menu") %>
     <%= f.hidden_field :recipe_id, value: @recipe.id %>
     <%= collection_select(:menu_item, :menu_id, Menu.all, :id, :title, prompt: true )  %>
     <%= f.submit "Submit" %>

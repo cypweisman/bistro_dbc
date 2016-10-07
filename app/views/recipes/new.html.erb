@@ -4,14 +4,14 @@
 <% end %>
 
 <%= form_for ([@user, @recipe]), {action: "create"} do |f| %>
-<fieldset>
+<fieldset id="recipe-new">
   <legend>New Recipe</legend>
   <h4>Add recipe details</h4>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.text_field :name, placeholder: "Recipe Name" %>
-  <%= f.text_area :description, placeholder: "Description" %>
-  <%= f.text_area :directions, placeholder: "Directions" %>
-  <%= f.number_field :prep_time, placeholder: "Prep time (in minutes)" %>
+  <%= f.hidden_field :user_id, value: current_user.id %><br>
+  <%= f.text_field :name, placeholder: "Recipe Name" %><br><br>
+  <%= f.text_area :description, placeholder: "Description" %><br><br>
+  <%= f.text_area :directions, placeholder: "Directions" %><br><br>
+  <%= f.number_field :prep_time, placeholder: "Prep time (in minutes)" %><br><br>
   <%= collection_select(:recipe, :category_id, Category.all, :id, :title, prompt: true) %>
 
   <h4>Add ingredients</h4>

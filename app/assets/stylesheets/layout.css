@@ -1,0 +1,37 @@
+body {
+  margin: 2.5%;
+  background-color: #f0e3e1;
+  font-family: verdana;
+  color: #710909;
+}
+
+nav {
+  background-color: #CB0F0F;
+  padding: 2.5%;
+  /*background-image: url('Logomakr_7EW1mV.png');*/
+
+}
+
+nav a {
+  color: #f0e3e1;
+}
+
+a {
+  color: #CB0F0F;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#recipe-new {
+  text-align: center;
+}
+
+#new-menu {
+  text-align: center;
+}
+
+#logo {
+  background-image: url('Logomakr_7EW1mV.png');
+}
