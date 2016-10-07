@@ -1,37 +1,53 @@
 class MenusController < ApplicationController
   def new
-    @user = User.find(params[:user_id])
-    @menu = Menu.new
+    if current_user.is_admin
+      @user = User.find(params[:user_id])
+      @menu = Menu.new
+    else
+      render "/partials/_404", layout: false
+    end
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @menu = Menu.new(menu_params)
-    if @menu.save
-      redirect_to menu_path(@menu)
+    if current_user.is_admin
+      @user = User.find(params[:user_id])
+      @menu = Menu.new(menu_params)
+      if @menu.save
+        redirect_to menu_path(@menu)
+      else
+        @errors = @menu.errors.full_messages
+        render :new
+      end
     else
-      @errors = @menu.errors.full_messages
-      render :new
+      render "/partials/_404", layout: false
     end
   end
 
   def edit
-    @menu = Menu.find(params[:id])
-    if @menu.user_id == current_user.id
-      render :edit
+    if current_user.is_admin
+      @menu = Menu.find(params[:id])
+      if @menu.user_id == current_user.id
+        render :edit
+      else
+        redirect_to root_url
+      end
     else
-      redirect_to root_url
+      render "/partials/_404", layout: false
     end
   end
 
   def update
-    @user = User.find(current_user.id)
-    @menu = Menu.find(params[:id])
-    if @menu.update_attributes(menu_params)
-      redirect_to menu_path(@menu)
+    if current_user.is_admin
+      @user = User.find(current_user.id)
+      @menu = Menu.find(params[:id])
+      if @menu.update_attributes(menu_params)
+        redirect_to menu_path(@menu)
+      else
+        @errors = @menu.errors.full_messages
+        render :edit
+      end
     else
-      @errors = @menu.errors.full_messages
-      render :edit
+      render "/partials/_404", layout: false
     end
   end
 
@@ -43,12 +59,20 @@ class MenusController < ApplicationController
   end
 
   def print
-    @menu = Menu.find(params[:id])
-    render :print, layout: false
+    if current_user.is_admin
+      @menu = Menu.find(params[:id])
+      render :print, layout: false
+    else
+      render "/partials/_404", layout: false
+    end
   end
 
   def show
-    @menu = Menu.find(params[:id])
+    if current_user.is_admin
+      @menu = Menu.find(params[:id])
+    else
+      render "/partials/_404", layout: false
+    end
   end
 
   private

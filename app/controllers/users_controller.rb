@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user.id == session[:user_id]
       if params[:search]
         #MENUS WITH THE NAME <CHOCOLATE>
        menu_names = @user.menu_name_search(params[:search])
@@ -28,6 +29,9 @@ class UsersController < ApplicationController
       else
         @menus = @user.menus
       end
+    else
+      render "/partials/_404", layout: false
+    end
   end
 
   private
