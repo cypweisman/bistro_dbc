@@ -1,0 +1,14 @@
+body {
+  margin: 2.5%;
+  background-color: #f0e3e1;
+  font-family: verdana;
+}
+
+nav {
+  background-color: #CB0F0F;
+  padding: 2.5%;
+}
+
+ul {
+  list-style-type: none;
+}
