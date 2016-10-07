@@ -1,35 +1,24 @@
 
+<% if @errors %>
+  <%= render partial: "partials/errors", locals: { errors: @errors } %>
+<% end %>
+
 <%= form_for ([@user, @recipe]), {action: "create"} do |f| %>
 <fieldset>
   <legend>New Recipe</legend>
   <h4>Add recipe details</h4>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.text_field :name, placeholder: "Recipe Name" %>
   <%= f.text_area :description, placeholder: "Description" %>
   <%= f.text_area :directions, placeholder: "Directions" %>
   <%= f.number_field :prep_time, placeholder: "Prep time (in minutes)" %>
+  <%= collection_select(:recipe, :category_id, Category.all, :id, :title, prompt: true) %>
+
   <h4>Add ingredients</h4>
-    <%= fields_for :ingredients do |i| %>
-      <p><%= i.text_field :name, placeholder: "Ingredient name" %>
-        <%= i.number_field :amount, placeholder: "Amount" %>
-        <%= i.select :from, [ 'Cup','Tbsp','tsp' ], :prompt => 'Select One' %>
-      </p>
-      <p><%= i.text_field :name, placeholder: "Ingredient name" %>
-        <%= i.number_field :amount, placeholder: "Amount" %>
-        <%= i.select :from, [ 'Cup','Tbsp','tsp' ], :prompt => 'Select One' %>
-      </p>
-      <p><%= i.text_field :name, placeholder: "Ingredient name" %>
-        <%= i.number_field :amount, placeholder: "Amount" %>
-        <%= i.select :from, [ 'Cup','Tbsp','tsp' ], :prompt => 'Select One' %>
-      </p>
-      <p><%= i.text_field :name, placeholder: "Ingredient name" %>
-        <%= i.number_field :amount, placeholder: "Amount" %>
-        <%= i.select :from, [ 'Cup','Tbsp','tsp' ], :prompt => 'Select One' %>
-      </p>
-      <p><%= i.text_field :name, placeholder: "Ingredient name" %>
-        <%= i.number_field :amount, placeholder: "Amount" %>
-        <%= i.select :from, [ 'Cup','Tbsp','tsp' ], :prompt => 'Select One' %>
-      </p>
+  <div class="ingredient-form">
+    <%= render partial: "partials/new_ingredients", locals: { user: @user, recipe: @recipe } %>
+  </div>
+
   <%= f.submit "Create" %>
-  <%end %>
 </fieldset>
 <% end %>
