@@ -19,10 +19,18 @@ class RecipesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @recipe = Recipe.new(recipe_params)
+    @ingredient = Ingredient.new(ingredients_params)
     if @recipe.save
-      redirect_to recipe_path(@recipe)
+      @ingredient.recipe_id = @recipe.id
+      if @ingredient.save
+        redirect_to user_path(@user)
+      else
+        @recipe.destroy
+        @errors = ['Please make sure all ingredient fields have been filled']
+        render :new
+      end
     else
-      @error = @recipe.errors.full_messages
+      @errors = @recipe.errors.full_messages
       render :new
     end
   end
@@ -31,6 +39,11 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :description, :user_id, :directions, :prep_time, :category_id)
+  end
+
+  def ingredients_params
+    ingredients_params = params.require(:ingredients).permit(:name, :amount, :measurement)
+    { name: ingredients_params[:name], amount: (ingredients_params[:amount] + ' ' + ingredients_params[:measurement])}
   end
 
 end

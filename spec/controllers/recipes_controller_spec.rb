@@ -39,7 +39,7 @@ describe RecipesController do
         post :create, { user_id: user.id, recipe: {name: "Brownie Cake", description: "The chef's finest", directions: "Do this \n do this\n", prep_time: 25, category_id: 1, user_id: user.id} }
         new_recipe = Recipe.last
 
-        expect(response).to redirect_to "/recipes/#{new_recipe.id}"
+        expect(response).to redirect_to "/users/#{user.id}"
       end
     end
 
