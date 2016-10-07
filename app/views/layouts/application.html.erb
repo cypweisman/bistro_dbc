@@ -8,7 +8,11 @@
 </head>
 <body>
   <nav>
-    <% if session[:user_id] != nil %>
+    <% if logged_in? && current_user.is_admin %>
+      <%= link_to current_user.username, user_path(current_user), :method => :get %>
+      <%= link_to "recipes", recipes_path, :method => :get %>
+      <%= link_to "logout", session_path(session[:user_id]), :method => :delete %>
+    <% elsif logged_in? %>
       <%= link_to current_user.username, user_path(current_user), :method => :get %>
       <%= link_to "logout", session_path(session[:user_id]), :method => :delete %>
     <% else %>
