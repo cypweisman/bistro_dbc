@@ -2,28 +2,38 @@ class RecipesController < ApplicationController
   include RecipeHelper
 
   def index
-    @menus = Menu.all
-    @menu_item = MenuItem.new
-    if params[:search]
-      results_recipes = Recipe.recipe_search(params[:search])
-      results_ingredients_recipes = Ingredient.ingredient_search(params[:search])
-      @recipes = results_recipes.concat results_ingredients_recipes
+    if current_user.is_admin
+      @menus = Menu.all
+      @menu_item = MenuItem.new
+      if params[:search]
+        results_recipes = Recipe.recipe_search(params[:search])
+        results_ingredients_recipes = Ingredient.ingredient_search(params[:search])
+        @recipes = results_recipes.concat results_ingredients_recipes
+      else
+        @recipes = Recipe.all
+      end
     else
-      @recipes = Recipe.all
+      render "/partials/_404", layout: false
     end
-
-
   end
 
   def show
-    @menu_item = MenuItem.new
-    @recipe = Recipe.find(params[:id])
+    if current_user.is_admin
+      @menu_item = MenuItem.new
+      @recipe = Recipe.find(params[:id])
+    else
+      render "/partials/_404", layout: false
+    end
   end
 
   def new
-    @recipe = Recipe.new
-    @user = User.find(params[:user_id])
-    render :new
+    if logged_in?
+      @recipe = Recipe.new
+      @user = User.find(params[:user_id])
+      render :new
+    else
+      render "/partials/_404", layout: false
+    end
   end
 
   def create
@@ -44,8 +54,7 @@ class RecipesController < ApplicationController
         render :new
       end
     else
-      @errors = @recipe.errors.full_messages
-      render :new
+      render "/partials/_404", layout: false
     end
   end
 
