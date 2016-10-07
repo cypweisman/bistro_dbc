@@ -21,7 +21,7 @@ class Menu < ActiveRecord::Base
       end
       menu_categories[current_category] = temp_array
     end
-      menu_categories
+    menu_categories
   end
 
   def sort_by_category

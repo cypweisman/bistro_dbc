@@ -1,7 +1,12 @@
 <h1><%= @menu.title %></h1>
 <p><%= @menu.description %></p><br>
-<% @menu.sort_by_category.each do |item| %>
-<%= item.recipe.category.title %><br>
+<% @menu.sort_menu.each do |category, dishes| %>
+  <%= category.capitalize %>
+  <% dishes.each do |dish| %>
+    <ul>
+      <li><%= dish.recipe.name %></li>
+    </ul>
+  <% end %>
 <% end %>
 
 
