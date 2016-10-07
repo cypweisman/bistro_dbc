@@ -1,6 +1,7 @@
 <h1><%= @menu.title %></h1>
 <p><%= @menu.description %></p><br>
-<% @menu.menu_items.each do |item| %>
-<%= item.recipe.name %><br>
+<% @menu.sort_by_category.each do |item| %>
+<%= item.recipe.category.title %><br>
 <% end %>
+
 
