@@ -1,8 +1,15 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
     @menus = Menu.all
     @menu_item = MenuItem.new
+    if params[:search]
+      results_recipes = Recipe.recipe_search(params[:search])
+      results_ingredients_recipes = Ingredient.ingredient_search(params[:search])
+      @recipes = results_recipes.concat results_ingredients_recipes
+    else
+      @recipes = Recipe.all
+    end
+
 
   end
 

@@ -9,4 +9,8 @@ class Recipe < ActiveRecord::Base
 
   validates :prep_time, numericality: { greater_than: 0 }
 
+  def self.recipe_search(criteria)
+    recipes = self.where("name LIKE ?", "%#{criteria}%")
+  end
+
 end
