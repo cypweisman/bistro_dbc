@@ -1,5 +1,5 @@
 <h1><%= @menu.title %></h1>
-<p><%= @menu.description %></p><br>
+<p>Menu description: <%= @menu.description %></p><br>
 
 <div class="chef-menu-options">
   <%= link_to "Edit Menu", edit_menu_path(@menu) %>
@@ -11,18 +11,19 @@
         <%= render partial: "partials/errors", locals: { errors: @errors } %>
       <% end %>
   <% @menu.sorted_menu.each do |category, dishes| %>
-    <%= category.capitalize %>
+    <p>Category: <%= category.capitalize %></p>
     <% dishes.each do |dish| %>
       <ul>
         <li>
           <%= form_for dish, {action: "update"} do |f| %>
 
-          <i><%= dish.recipe.name %></i> ~~~~~~~~~ <%= f.number_field :price, placeholder: dish.price %> <%= link_to "Delete Dish", menu_item_path(dish), :method => :delete %><br>
+          <i>Dish: <%= dish.recipe.name %><br><br></i> Price: <%= f.number_field :price, placeholder: dish.price %><br><br>
 
-          <%= f.text_area :description, value: dish.description %>
+          Description: <%= f.text_area :description, value: dish.description %>
           <%= f.hidden_field :menu_id, value: @menu.id %>
           <%= f.hidden_field :recipe_id, value: dish.recipe.id %>
-          <%= f.submit "Update Dish" %>
+          <%= f.submit "Update Dish" %><br><br>
+          <%= link_to "Delete Dish", menu_item_path(dish), :method => :delete %>
           <% end %>
         </li><br>
       </ul>

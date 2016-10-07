@@ -8,6 +8,8 @@
 </head>
 <body>
   <nav>
+    <div id="logo"></div>
+    <img src="<%= asset_path( 'Logomakr_7EW1mV.png' ) %>" style="width:150px;height:100px;" alt="logo" />
     <% if logged_in? && current_user.is_admin %>
       <%= link_to current_user.username, user_path(current_user), :method => :get %>
       <%= link_to "recipes", recipes_path, :method => :get %>

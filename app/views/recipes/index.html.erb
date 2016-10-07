@@ -21,7 +21,7 @@
         <%= link_to recipe.name, recipe_path(recipe), :method => :get %><br>
         <%= f.hidden_field :recipe_id, value: recipe.id %>
         <%= collection_select(:menu_item, :menu_id, Menu.all, :id, :title, prompt: true )  %>
-        <%= f.submit "Submit" %>
+        <%= f.submit "Add To Menu" %>
         <% end %>
     </li><br>
 
