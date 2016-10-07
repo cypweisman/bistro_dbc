@@ -21,21 +21,18 @@ describe Menu do
 
   describe "validations" do
     it "is invalid without a title" do
-      puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-      p Menu.count.all
-      Menu.create(description: "So Great!", user_id: 1)
-      expect(Menu.count).to eq(0)
+      menu = Menu.create(description: "So Great!", user_id: 1)
+      expect(menu.valid?).to eq false
     end
 
     it "is invalid without a description" do
-      p Menu.count.all
-      Menu.create(title: "Brunch", user_id: 1)
-      expect(Menu.count).to eq(0)
+      menu = Menu.create(title: "Brunch", user_id: 1)
+      expect(menu.valid?).to eq false
     end
 
     it "is invalid without a user id" do
-      Menu.create(title: "Brunch", description: "So Great!")
-      expect(Menu.count).to eq (0)
+      menu = Menu.create(title: "Brunch", description: "So Great!")
+      expect(menu.valid?).to eq false
     end
   end
 end
