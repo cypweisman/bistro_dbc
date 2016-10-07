@@ -1,0 +1,13 @@
+<% if @errors %>
+  <%= render partial: "partials/errors", locals: { errors: @errors } %>
+<% end %>
+
+<%= form_for @menu, {action: "update"} do |f| %>
+<fieldset>
+  <legend>Edit Menu</legend>
+  <%= f.text_field :title, value: @menu.title %>
+  <%= f.text_area :description, value: @menu.description %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Update" %>
+</fieldset>
+<% end %>
