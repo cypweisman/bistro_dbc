@@ -1,10 +1,6 @@
 <h1><%= @menu.title %></h1>
 <p><%= @menu.description %></p><br>
-
 <% @menu.menu_items.each do |item| %>
-  <ul>
-    <li><%= item.recipe.name %><br><%= item.description %></li>
-  </ul>
+<%= item.recipe.name %><br>
 <% end %>
-
 
