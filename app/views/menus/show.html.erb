@@ -1,11 +1,16 @@
 <h1><%= @menu.title %></h1>
 <p><%= @menu.description %></p><br>
-<% @menu.sort_menu.each do |category, dishes| %>
-  <%= category.capitalize %>
-  <% dishes.each do |dish| %>
-    <ul>
-      <li><%= dish.recipe.name %></li>
-    </ul>
+
+<% if @menu.menu_items.length > 0 %>
+  <% @menu.sorted_menu.each do |category, dishes| %>
+    <%= category.capitalize %>
+    <% dishes.each do |dish| %>
+      <ul>
+        <li><i><%= dish.recipe.name %></i> ~~~~~~~~~ <i><%= dish.price %></i><br>
+          <%= dish.description %>
+        </li>
+      </ul>
+    <% end %>
   <% end %>
 <% end %>
 

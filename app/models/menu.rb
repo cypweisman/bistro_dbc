@@ -6,7 +6,7 @@ class Menu < ActiveRecord::Base
   validates :title, :description, :user_id, presence: true
 
 
-  def sort_menu
+  def sorted_menu
     sorted_menu = self.sort_by_category
     temp_array = []
     menu_categories = {}
