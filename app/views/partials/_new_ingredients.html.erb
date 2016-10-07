@@ -1,0 +1,6 @@
+<%= fields_for :ingredients do |i| %>
+  <p><%= i.text_field :name, placeholder: "Ingredient name" %>
+    <%= i.number_field :amount, placeholder: "Amount" %>
+    <%= i.select :measurement, [ 'Cup','Tbsp','tsp' ], :prompt => 'Select One' %>
+  </p>
+<%end %>
