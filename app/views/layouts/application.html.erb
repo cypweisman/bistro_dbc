@@ -2,12 +2,22 @@
 <html>
 <head>
   <title>Bistro</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <nav>
+    <div id="logo"></div>
+    <img src="<%= asset_path( 'Logomakr_7EW1mV.png' ) %>" style="width:150px;height:100px;" alt="logo" />
     <% if logged_in? && current_user.is_admin %>
       <%= link_to current_user.username, user_path(current_user), :method => :get %>
       <%= link_to "recipes", recipes_path, :method => :get %>
