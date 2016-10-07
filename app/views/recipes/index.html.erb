@@ -1,7 +1,23 @@
 <h1>All Recipes</h1>
 
+ <% flash.each do |key, value| %>
+        <div><%= value %></div>
+  <% end %>
+
 <ul id="recipe-list">
   <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.name, recipe_path(recipe), :method => :get %></li>
+    <li>
+      <%= form_for ([@menu_item]), {action: "create"} do |f| %>
+        <%= link_to recipe.name, recipe_path(recipe), :method => :get %>
+        <%= f.hidden_field :recipe_id, value: recipe.id %>
+        <%= collection_select(:menu_item, :menu_id, Menu.all, :id, :title, prompt: true )  %>
+        <%= f.submit "Submit" %>
+        <% end %>
+    </li>
+
   <% end %>
 </ul>
+
+
+
+

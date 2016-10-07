@@ -22,6 +22,7 @@ describe Menu do
   describe "validations" do
     it "is invalid without a title" do
       menu = Menu.create(description: "So Great!", user_id: 1)
+
       expect(menu.valid?).to eq false
     end
 
