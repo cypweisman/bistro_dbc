@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       @ingredient.recipe_id = @recipe.id
       if @ingredient.save
-        redirect_to user_path(@user)
+        redirect_to recipe_path(@recipe)
       else
         @recipe.destroy
         @errors = ['Please make sure all ingredient fields have been filled']
