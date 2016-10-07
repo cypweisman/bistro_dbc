@@ -24,24 +24,24 @@ describe User  do
 
   describe "validations" do
     it "is invalid without a username" do
-      User.create(email: "jack@yahoo.com", password: "password")
-      expect(User.count).to eq(0)
+      user = User.create(email: "jack@yahoo.com", password: "password")
+      expect(user.valid?).to eq false
     end
 
     it "is invalid without an email" do
-      User.create(username: "jack_noble", password: "password")
-      expect(User.count).to eq(0)
+      user = User.create(username: "jack_noble", password: "password")
+      expect(user.valid?).to eq false
     end
 
     it "requires a password of at least 8 characters" do
-      User.create(username: "jack_noble", email: "jack@yahoo.com", password: "passwor")
-      expect(User.count).to eq (0)
+      user = User.create(username: "jack_noble", email: "jack@yahoo.com", password: "passwor")
+      expect(user.valid?).to eq false
     end
 
     it "requires emails to be unique" do
       User.create(username: "ryan_howard", email: "jack@yahoo.com", password: "12341234")
-      User.create(username: "jack_noble", email: "jack@yahoo.com", password: "password")
-      expect(User.count).to eq(1)
+      user = User.create(username: "jack_noble", email: "jack@yahoo.com", password: "password")
+      expect(user.valid?).to eq false
     end
   end
 
