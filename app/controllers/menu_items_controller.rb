@@ -4,8 +4,9 @@ class MenuItemsController < ApplicationController
     @menu_item.description = @menu_item.recipe.description
     @menu_item.price = 0
     if @menu_item.save
-      flash[:success] = "#{@menu_item.recipe.name} was saved to #{@menu_item.menu.title}"
       redirect_to recipes_path
+      flash[:success] = "#{@menu_item.recipe.name} was saved to #{@menu_item.menu.title}"
+
     else
       @errors = "Error fix"
       render "/recipes/index"
