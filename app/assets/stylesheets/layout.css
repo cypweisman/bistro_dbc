@@ -12,3 +12,12 @@ nav {
 ul {
   list-style-type: none;
 }
+
+#recipe-new {
+  text-align: center;
+}
+
+#new-menu {
+  text-align: center;
+}
+
