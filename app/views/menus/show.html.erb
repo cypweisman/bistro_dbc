@@ -7,13 +7,24 @@
 </div>
 
 <% if @menu.menu_items.length > 0 %>
+      <% if @errors %>
+        <%= render partial: "partials/errors", locals: { errors: @errors } %>
+      <% end %>
   <% @menu.sorted_menu.each do |category, dishes| %>
     <%= category.capitalize %>
     <% dishes.each do |dish| %>
       <ul>
-        <li><i><%= dish.recipe.name %></i> ~~~~~~~~~ <i><%= dish.price %></i><br>
-          <%= dish.description %>
-        </li>
+        <li>
+          <%= form_for dish, {action: "update"} do |f| %>
+
+          <i><%= dish.recipe.name %></i> ~~~~~~~~~ <%= f.number_field :price, placeholder: dish.price %> <%= link_to "Delete Dish", menu_item_path(dish), :method => :delete %><br>
+
+          <%= f.text_area :description, value: dish.description %>
+          <%= f.hidden_field :menu_id, value: @menu.id %>
+          <%= f.hidden_field :recipe_id, value: dish.recipe.id %>
+          <%= f.submit "Update Dish" %>
+          <% end %>
+        </li><br>
       </ul>
     <% end %>
   <% end %>
