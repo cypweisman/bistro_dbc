@@ -37,20 +37,25 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @recipe = Recipe.new(recipe_params)
-    if @recipe.save
-      existing_ingredients = Ingredient.retrieve
-      saved_ingredients_and_errors = create_ingredients(@recipe.id)
-      p saved_ingredients_and_errors
-      @ingredients = saved_ingredients_and_errors[:ingredients]
-      @errors = saved_ingredients_and_errors[:errors]
-      @ingredients += existing_ingredients if existing_ingredients
-      if @errors == []
-        redirect_to user_path(@user)
+    if logged_in?
+      @user = User.find(params[:user_id])
+      @recipe = Recipe.new(recipe_params)
+      if @recipe.save
+        existing_ingredients = Ingredient.retrieve
+        saved_ingredients_and_errors = create_ingredients(@recipe.id)
+        p saved_ingredients_and_errors
+        @ingredients = saved_ingredients_and_errors[:ingredients]
+        @errors = saved_ingredients_and_errors[:errors]
+        @ingredients += existing_ingredients if existing_ingredients
+        if @errors == []
+          redirect_to user_path(@user)
+        else
+          @recipe.destroy
+          @ingredients.each { |ingredient| ingredient.recipe_id = @recipe.id } #should be destroy?
+          render :new
+        end
       else
-        @recipe.destroy
-        @ingredients.each { |ingredient| ingredient.recipe_id = @recipe.id } #should be destroy?
+        @errors = @recipe.errors.full_messages
         render :new
       end
     else
