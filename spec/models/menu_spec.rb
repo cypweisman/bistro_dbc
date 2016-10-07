@@ -21,7 +21,7 @@ describe Menu do
 
   describe "validations" do
     it "is invalid without a title" do
-      Menu.create(description: "So Great!", user_id: 1)
+      menu = Menu.create(description: "So Great!", user_id: 1)
       expect(Menu.count).to eq(0)
     end
 
