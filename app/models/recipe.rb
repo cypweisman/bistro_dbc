@@ -26,20 +26,4 @@ class Recipe < ActiveRecord::Base
      menus
   end
 
-
- # @menus = []
- #     @recipes = Recipe.where('name LIKE ?', "%#{params[:search]}%")
- #     #p @recipes
- #     @recipes.each do |recipe|
- #       # if recipe.menu.id != nil
- #       recipe.menus.each do |menu|
- #          if menu.user.id == current_user.id
- #          @menus << menu
- #          end
- #       end
- #      # end
- #     end
- #     p "helllooooooo"
- #     p @menus[0]
- #     @menus
 end

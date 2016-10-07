@@ -10,6 +10,10 @@
   <%= submit_tag "Search", :name => nil %>
 <% end %>
 
+ <%= form_tag(recipes_path, method: "get") do %>
+    <%= submit_tag "Refresh", :name => nil %>
+  <% end %>
+
 <ul id="recipe-list">
   <% @recipes.each do |recipe| %>
     <li>

@@ -21,6 +21,10 @@
       <%= submit_tag "Search", :name => nil %>
     <% end %>
 
+    <%= form_tag(user_path(current_user), method: "get") do %>
+      <%= submit_tag "Refresh", :name => nil %>
+    <% end %>
+
     <% @menus.each do |menu| %>
         <ul>
           <li><%= link_to "#{menu.title}", menu_path(menu), :method => :get %><br><%= menu.description %></li>

@@ -2,6 +2,20 @@
 <h2>Category <%= @recipe.category.title %></h2>
 
 
+
+
+  <%= form_for ([@menu_item]), {action: "create"} do |f| %>
+
+    <%= f.hidden_field :recipe_id, value: @recipe.id %>
+    <%= collection_select(:menu_item, :menu_id, Menu.all, :id, :title, prompt: true )  %>
+    <%= f.submit "Submit" %>
+  <% end %>
+
+
+
+
+
+
 <p>Description: <%= @recipe.description %></p>
 <ul>
   <li>Prep time: <%= @recipe.prep_time %></li>
