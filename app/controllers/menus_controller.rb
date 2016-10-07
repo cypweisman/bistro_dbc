@@ -42,6 +42,11 @@ class MenusController < ApplicationController
     redirect_to user_path(user)
   end
 
+  def print
+    @menu = Menu.find(params[:id])
+    render :print, layout: false
+  end
+
   def show
     @menu = Menu.find(params[:id])
   end
