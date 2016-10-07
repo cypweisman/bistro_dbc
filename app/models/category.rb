@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :recipe
+  has_many :recipes
 
   validates :title, uniqueness: true
 end
