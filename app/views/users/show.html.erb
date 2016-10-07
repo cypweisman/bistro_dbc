@@ -14,7 +14,14 @@
   <% else %>
     <div class="chef-menus-info">
     <h2>Your Menus</h2>
-    <% current_user.menus.each do |menu| %>
+
+    <%= form_tag(user_path(current_user), method: "get") do %>
+      <%= label_tag(:q, "Search for:") %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    <% end %>
+
+    <% @menus.each do |menu| %>
         <ul>
           <li><%= link_to "#{menu.title}", menu_path(menu), :method => :get %><br><%= menu.description %></li>
         </ul>

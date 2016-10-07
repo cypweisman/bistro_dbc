@@ -7,7 +7,7 @@
 <%= form_tag(recipes_path, method: "get") do %>
   <%= label_tag(:q, "Search for:") %>
   <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search", :name => nil %>
 <% end %>
 
 <ul id="recipe-list">

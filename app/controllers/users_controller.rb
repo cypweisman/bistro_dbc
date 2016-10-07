@@ -19,6 +19,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+      if params[:search]
+        #MENUS WITH THE NAME <CHOCOLATE>
+       menu_names = @user.menu_name_search(params[:search])
+        #THE MENU THAT INCLUDE RECIPES WITH NAME <CHCOLATE>
+       recipe_menu_names = Recipe.recipe_menu_search(params[:search], current_user)
+       @menus = menu_names.concat recipe_menu_names
+      else
+        @menus = @user.menus
+      end
   end
 
   private
