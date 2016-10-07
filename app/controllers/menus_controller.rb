@@ -52,10 +52,14 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    user = User.find(current_user.id)
-    menu = Menu.find(params[:id])
-    menu.destroy
-    redirect_to user_path(user)
+    if current_user.is_admin
+      user = User.find(current_user.id)
+      menu = Menu.find(params[:id])
+      menu.destroy
+      redirect_to user_path(user)
+    else
+      render "/partials/_404", layout: false
+    end
   end
 
   def print
