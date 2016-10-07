@@ -9,9 +9,9 @@ class MenusController < ApplicationController
   end
 
   def create
-    if current_user.is_admin
-      @user = User.find(params[:user_id])
-      @menu = Menu.new(menu_params)
+    @user = User.find(params[:user_id])
+    @menu = Menu.new(menu_params)
+    if current_user.is_admin && (@menu.user.id == session[:user_id])
       if @menu.save
         redirect_to menu_path(@menu)
       else
@@ -24,8 +24,8 @@ class MenusController < ApplicationController
   end
 
   def edit
-    if current_user.is_admin
-      @menu = Menu.find(params[:id])
+    @menu = Menu.find(params[:id])
+    if current_user.is_admin && (@menu.user.id == session[:user_id])
       if @menu.user_id == current_user.id
         render :edit
       else
@@ -37,9 +37,9 @@ class MenusController < ApplicationController
   end
 
   def update
-    if current_user.is_admin
-      @user = User.find(current_user.id)
-      @menu = Menu.find(params[:id])
+    @user = User.find(current_user.id)
+    @menu = Menu.find(params[:id])
+    if current_user.is_admin && (@menu.user.id == session[:user_id])
       if @menu.update_attributes(menu_params)
         redirect_to menu_path(@menu)
       else
@@ -52,9 +52,9 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    if current_user.is_admin
-      user = User.find(current_user.id)
-      menu = Menu.find(params[:id])
+    user = User.find(current_user.id)
+    menu = Menu.find(params[:id])
+    if current_user.is_admin && (menu.user.id == session[:user_id])
       menu.destroy
       redirect_to user_path(user)
     else
@@ -63,8 +63,8 @@ class MenusController < ApplicationController
   end
 
   def print
-    if current_user.is_admin
-      @menu = Menu.find(params[:id])
+    @menu = Menu.find(params[:id])
+    if current_user.is_admin && (@menu.user.id == session[:user_id])
       render :print, layout: false
     else
       render "/partials/_404", layout: false
@@ -72,8 +72,8 @@ class MenusController < ApplicationController
   end
 
   def show
-    if current_user.is_admin
-      @menu = Menu.find(params[:id])
+    @menu = Menu.find(params[:id])
+    if current_user.is_admin && (@menu.user.id == session[:user_id])
     else
       render "/partials/_404", layout: false
     end
