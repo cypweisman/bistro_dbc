@@ -29,15 +29,17 @@ class RecipesController < ApplicationController
     @user = User.find(params[:user_id])
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
+      existing_ingredients = Ingredient.retrieve
       saved_ingredients_and_errors = create_ingredients(@recipe.id)
+      p saved_ingredients_and_errors
       @ingredients = saved_ingredients_and_errors[:ingredients]
       @errors = saved_ingredients_and_errors[:errors]
+      @ingredients += existing_ingredients if existing_ingredients
       if @errors == []
         redirect_to user_path(@user)
       else
         @recipe.destroy
-        @ingredients.each { |ingredient| ingredient.destroy }
-        @errors = ['Please make sure all ingredient fields have been filled']
+        @ingredients.each { |ingredient| ingredient.recipe_id = @recipe.id } #should be destroy?
         render :new
       end
     else
@@ -57,17 +59,17 @@ class RecipesController < ApplicationController
     errors = []
     collect_ingredients_params.each do |ingred_key, ingred_data|
       ingredients_hash = set_ingredient_hash(ingred_data[:name], ingred_data[:amount], ingred_data[:measurement])
-      if no_blank_fields?(ingredients_hash) #if it doesn't have blank fields
+      if all_fields_blank?(ingredients_hash) #if it doesn't have blank fields
         ingredient = Ingredient.new(ingredients_hash) # instantiate new ingredient with hash
         ingredient.recipe_id = recipe_id
         if ingredient.save #if doesn't save, add to errors
           ingredients << ingredient #add to ingredients array
         else
-          errors << "One or more recipes did not save, please review and try again"
+          errors << "One or more ingredients did not save, please review and try again"
         end
       end
     end
-    {ingredients: ingredients, errors: errors.uniq!} #send ingredients and one error to create
+    {ingredients: ingredients, errors: errors.uniq} #send ingredients and one error to create
   end
 
   def collect_ingredients_params
@@ -75,20 +77,21 @@ class RecipesController < ApplicationController
   end
 
   def set_ingredient_hash(name, amount_num, measurement)
-    if amount_num != '' && measurement != ''
-      {name: name, amount: (amount_num + ' ' + measurement)}
+    if name == '' && (amount_num != '' || measurement != '')
+      {name: nil, amount: (amount_num + ' ' + measurement)}
+    elsif name != '' && (amount_num == '' || measurement == '')
+      {name: name, amount: nil}
     else
-      {name: name, amount: ''}
+      {name: name, amount: (amount_num + ' ' + measurement)}
     end
   end
 
-  def no_blank_fields?(ingredient_hash)
+  def all_fields_blank?(ingredient_hash)
     ingredient_hash[:name] != '' && ingredient_hash[:amount] != ''
   end
 
   def ingredients_params
     ingredients_params = params.require(:ingredients).permit(:name, :amount, :measurement)
   end
-
 
 end

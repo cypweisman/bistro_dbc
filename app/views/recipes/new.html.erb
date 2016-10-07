@@ -15,7 +15,7 @@
   <%= collection_select(:recipe, :category_id, Category.all, :id, :title, prompt: true) %>
 
   <% if @ingredients %>
-    <h4>Entered ingredients</h4>
+    <h4>Saved ingredients</h4>
       <% @ingredients.each do |ingredient| %>
         <p><%= ingredient.name %>: <%=ingredient.amount %></p>
       <% end %>
