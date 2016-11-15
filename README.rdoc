@@ -1,7 +1,6 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+2-day faux-client project: create a rails app that will allow food enthusiasts to submit recipes, and will allow a chef (super user) to create menus using selected recipes.
 
 #NAME Bernie's Bistro
 #Collaborators:
@@ -9,28 +8,5 @@ cypweisman: Cy Weisman
 winged115: Jack Noble
 dnestoff: David Nestoff
 lucasewright: Lucas Wright
-`````````
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
